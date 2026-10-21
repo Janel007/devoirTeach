@@ -1,0 +1,35 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand text-black-50" href="{{route('home')}}">Laravel | Blog</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+
+                @auth
+                    <li class="nav-item px-3">
+                        <a class="nav-link" href="{{route('article.create')}}">Creer un article</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            {{Auth::user()->name}}
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item text-black" href="#">{{Auth::user()->email}}</a></li>
+                            <li><a class="dropdown-item text-black" href="{{route('logout')}}">Logout </a></li>
+                        </ul>
+                    </li>
+
+
+                @else
+                    <li class="nav-item">
+                        <a class="btn btn-primary"  href="{{route('login')}}">Login</a>
+                        <a class="btn btn-secondary" href="{{route('register')}}">Register</a>
+                    </li>
+                @endauth
+
+            </ul>
+        </div>
+    </div>
+</nav>
